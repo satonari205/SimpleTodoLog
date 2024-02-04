@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  postgresql:
+    container_name: simpleTodo_psql
+    build: ./
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgresql/init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: choran
+      POSTGRES_PASSWORD: rootpass
+    restart: always
