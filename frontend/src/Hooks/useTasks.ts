@@ -1,9 +1,8 @@
-import { FC } from 'react';
 import useSWR from 'swr';
 import { Todos } from '../types/ITodo';
 import api from './api';
 
-const useTasks: FC = (): Promise<Todos> => {
+const useTasks = ():Todos => {
   const getTasks = async () => {
     try {
       const res = await api.get('tasks');
