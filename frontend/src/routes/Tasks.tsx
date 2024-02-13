@@ -5,7 +5,7 @@ import useTasks from "../Hooks/useTasks";
 import { Todos } from "../types/ITodo";
 
 export const Tasks: FC = () => {
-  const { todos, isLoading, isError } = useTasks<Promise[Todos]>();
+  const { todos, isLoading, isError } = useTasks();
 
   if (isLoading) {
     return (

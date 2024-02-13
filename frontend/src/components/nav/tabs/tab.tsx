@@ -1,15 +1,21 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Tab: FC = ({ tabName }) => {
-  const nav = useNavigate();
-  const pageHandler = () => {
-    nav(`/${tabName}`);
-  }
+type Props = {
+  tabName: string;
+}
+
+const Tab: FC<Props> = ({ tabName }) => {
+  const navigate = useNavigate();
+
+  const isTabActive = (tabName === window.location.pathname.substring(1))
+    ? "tab tab-active" : "tab";
 
   return (
-    <button role="tab" className="tab" onClick={pageHandler}>
+    <button role="tab" className={isTabActive} onClick={() => navigate(`/${tabName}`)}>
       {tabName}
     </button>
   );
 }
+
+export default Tab;

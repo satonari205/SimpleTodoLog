@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layouts from './layouts/Layouts';
 import { Tasks } from './routes/Tasks';
@@ -6,7 +5,7 @@ import { Diary } from './routes/Diary';
 import { Calendar } from './routes/Calendar';
 import { User } from './routes/User';
 
-function App(): FC {
+function App() {
   return (
     <>
       <BrowserRouter>
@@ -20,7 +19,7 @@ function App(): FC {
         </Routes>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
