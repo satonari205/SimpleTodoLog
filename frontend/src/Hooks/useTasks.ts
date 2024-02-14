@@ -1,14 +1,14 @@
 import useSWR from 'swr';
-import { Todos } from '../types/ITodo';
+import { Todo } from '../types/ITodo';
 import api from './api';
 
-const useTasks = ():Todos => {
+const useTasks = () => {
   const getTasks = async () => {
     try {
       const res = await api.get('tasks');
-      return res.data.filter((todo) => !todo.done);
+      return res.data.filter((todo: Todo) => !todo.done);
     } catch(e) {
-      throw new Error(e);
+      console.log(e);
     }
   }
 

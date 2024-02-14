@@ -6,7 +6,7 @@ interface Props {
   user?: User
 }
 
-const Profile: FC<Props> = ({ user }) => {
+const UserInfo: FC<Props> = ({ user }) => {
   const onClick = ():void => {
     logout();
     window.location.reload();
@@ -34,4 +34,4 @@ const Profile: FC<Props> = ({ user }) => {
   )
 }
 
-export default Profile;
+export default UserInfo;

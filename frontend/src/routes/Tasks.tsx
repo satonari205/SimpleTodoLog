@@ -1,27 +1,37 @@
-import { FC } from "react";
-import { Oval } from "react-loader-spinner";
-import Todo from "../components/todo/Todo";
-import useTasks from "../Hooks/useTasks";
-import { Todos } from "../types/ITodo";
+import { FC, useState } from "react";
+// import { Oval } from "react-loader-spinner";
+import Task from "../components/todos/Task";
+// import useTasks from "../Hooks/useTasks";
+import { Todo } from "../types/ITodo";
 
 export const Tasks: FC = () => {
-  const { todos, isLoading, isError } = useTasks();
+  const [todos, setTodos] = useState<Todo[]>([
+    { id: 1, title: "sampleTodo1", done: false },
+    { id: 2, title: "sampleTodo2", done: false },
+    { id: 3, title: "sampleTodo3", done: false },
+    { id: 4, title: "sampleTodo4", done: false },
+    { id: 5, title: "sampleTodo5", done: false },
+    { id: 6, title: "sampleTodo6", done: false },
+    { id: 7, title: "sampleTodo7", done: false }
+  ]);
 
-  if (isLoading) {
-    return (
-      <div className="mx-auto w-8 h-8">
-        <Oval
-          visible={true}
-          height="32"
-          width="32"
-          color="#411DD8"
-          ariaLabel="oval-loading"
-        />
-      </div>
-    );
-  }
+  // const { todos, isLoading, isError } = useTasks();
 
-  if (isError) return <h1>error</h1>;
+  // if (isLoading) {
+  //   return (
+  //     <div className="mx-auto w-8 h-8">
+  //       <Oval
+  //         visible={true}
+  //         height="32"
+  //         width="32"
+  //         color="#411DD8"
+  //         ariaLabel="oval-loading"
+  //       />
+  //     </div>
+  //   );
+  // }
+
+  // if (isError) return <h1>error</h1>;
 
   return (
     <>
@@ -34,17 +44,11 @@ export const Tasks: FC = () => {
         />
         <button className="btn btn-sm btn-primary">add</button>
       </div>
-      <div className="overflow-y-scroll" style={{ height: "70vh" }}>
-        <table className="table">
-          <tbody>
-            {
-              todos
-              ? todos.map((todo) => <Todo key={todo.id} title={todo.title} />)
-              : null
-            }
-          </tbody>
-        </table>
-      </div>
+      <table className="table">
+        <tbody>
+          { todos ? todos.map((todo) => <Task key={todo.id} todo={todo} />) : null }
+        </tbody>
+      </table>
     </>
   );
 };

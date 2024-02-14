@@ -3,7 +3,7 @@ import Layouts from './layouts/Layouts';
 import { Tasks } from './routes/Tasks';
 import { Diary } from './routes/Diary';
 import { Calendar } from './routes/Calendar';
-import { User } from './routes/User';
+import { Profile } from './routes/Profile';
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
           <Route path="/" element={<Layouts />}>
             <Route path="/todos" element={<Tasks />} />
             <Route path="/diary" element={<Diary />} />
-            <Route path="/calender" element={<Calendar />} />
-            <Route path="/user" element={<User />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/" element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>

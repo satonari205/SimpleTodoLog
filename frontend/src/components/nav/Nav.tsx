@@ -1,13 +1,13 @@
 import { FC } from "react";
-import Tab from "./tabs/tab";
+import Tab from "./tabs/Tab";
 
 const Nav: FC = () => {
   return (
     <div role="tablist" className="tabs tabs-lifted">
-      <Tab tabName="todos"/>
-      <Tab tabName="diary"/>
-      <Tab tabName="calender"/>
-      <Tab tabName="user"/>
+      <Tab tabName="todos" path="todos"/>
+      <Tab tabName="diary" path="diary"/>
+      <Tab tabName="calendar" path="calendar"/>
+      <Tab tabName="profile" path=""/>
     </div>
   );
 }
