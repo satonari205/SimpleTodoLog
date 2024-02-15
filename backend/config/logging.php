@@ -27,6 +27,13 @@ return [
             'level' => 'info',
         ],
 
+        'sql' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/sql.log'),
+            'level' => 'info',
+            'days' => 7,
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

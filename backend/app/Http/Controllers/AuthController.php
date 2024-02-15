@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\User\LoginRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -40,7 +40,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return new JsonResponse([
-            'message' => 'Unauthenticated.',
+            'message' => "You've logged out. Unauthenticated.",
         ]);
     }
 }
