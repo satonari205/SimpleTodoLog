@@ -1,18 +1,8 @@
 import useSWR from 'swr';
-import { Todo } from '../types/ITodo';
-import api from './api';
+import { getTasks } from './todo';
 
 const useTasks = () => {
-  const getTasks = async () => {
-    try {
-      const res = await api.get('tasks');
-      return res.data.filter((todo: Todo) => !todo.done);
-    } catch(e) {
-      console.log(e);
-    }
-  }
-
-  const { data, error, isLoading } = useSWR(`/tasks`, getTasks);
+  const { data, error, isLoading } = useSWR("/api/todos", getTasks);
 
   return {
     todos: data,

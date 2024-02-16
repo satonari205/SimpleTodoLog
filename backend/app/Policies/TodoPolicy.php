@@ -20,18 +20,17 @@ class TodoPolicy
 
     public function create(User $user, Todo $todo)
     {
-        // dd($todo);
-        return true;
+        return Auth::id() === $todo->user_id;
     }
 
     public function update(User $user, Todo $todo)
     {
-        //
+        return Auth::id() === $todo->user_id;
     }
 
     public function delete(User $user, Todo $todo)
     {
-        //
+        return Auth::id() === $todo->user_id;
     }
 
     public function restore(User $user, Todo $todo)
