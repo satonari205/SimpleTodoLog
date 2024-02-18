@@ -1,16 +1,26 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Oval } from "react-loader-spinner";
-import Task from "../components/todos/Task";
+import { getTasks } from "../Hooks/todo";
 import InputTask from "../components/todos/InputTask";
+import TaskList from "../components/todos/TaskList";
 import { Todo } from "../types/ITodo";
 
 export const Tasks: FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [firstTodos, setFirstTodos] = useState<Todo[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setFirstTodos(await getTasks());
+      setIsLoading(false);
+    }
+    fetchData();
+  }, []);
 
   if (isLoading) {
     return (
       <div className="mx-auto w-8 h-8">
-        <Oval visible={true} height="32" width="32" color="#411DD8" ariaLabel="oval-loading"/>
+        <Oval visible={true} height="32" width="32" color="#411DD8" ariaLabel="oval-loading" />
       </div>
     );
   }
@@ -18,15 +28,7 @@ export const Tasks: FC = () => {
   return (
     <>
       <InputTask />
-      <table className="table">
-        <tbody>
-          {
-            todos
-            ? todos.map((todo:Todo) => <Task key={todo.id} todo={todo} />)
-            : <h1>やるべきことを追加しましょう。</h1>
-          }
-        </tbody>
-      </table>
+      <TaskList firstTodos={firstTodos} />
     </>
   );
 };

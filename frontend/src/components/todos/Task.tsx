@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Todo } from "../../types/ITodo";
-import { deleteTask } from "../../Hooks/todo";
+import { deleteTask, updateTask } from "../../Hooks/todo";
 
 interface Props {
   key: number;
@@ -8,14 +8,15 @@ interface Props {
 }
 
 const Task: FC<Props> = (props) => {
-  const dummy = () => { alert('not yet'); };
-
   return (
     <>
       <tr className="flex sm:flex-row hover:bg-gray-100 text-lg">
         <th className="break-all p-0 my-2 sm:p-3 sm:mt-0">{props.todo.title}</th>
         <td className="min-w-28 flex items-center ml-auto">
-          <button className="btn btn-xs btn-primary btn-outline mr-2" onClick={dummy}>
+          <button
+            className="btn btn-xs btn-primary btn-outline mr-2"
+            onClick={() => updateTask(props.key)}
+          >
             Done
           </button>
           <button onClick={() => deleteTask(props.key)}>
