@@ -8,6 +8,7 @@ type Props = {
 
 const Tab: FC<Props> = ( props ) => {
   const navigate = useNavigate();
+
   const isTabActive = (props.path === window.location.pathname.substring(1))
     ? "tab tab-active" : "tab";
 
