@@ -15,8 +15,8 @@ const useTodoState = () => {
 
   const [isError, setIsError] = useState<string>('');
 
-  const getTodos = async () => {
-    await api.get('/api/todos')
+  const getTodos = async (done: string) => {
+    await api.get(`/api/todos?done=${done}`)
       .then(res => setTodos(res.data.data))
       .catch((e) => setIsError(e.response.data.message));
   }

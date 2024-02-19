@@ -18,9 +18,9 @@ class TodoPolicy
         //
     }
 
-    public function create(User $user, Todo $todo)
+    public function create(User $user)
     {
-        return Auth::id() === $todo->user_id;
+        //
     }
 
     public function update(User $user, Todo $todo)

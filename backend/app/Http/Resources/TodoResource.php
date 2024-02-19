@@ -19,8 +19,8 @@ class TodoResource extends JsonResource
             'user_id' => $this->user_id,
             'title' => $this->title,
             'done' => $this->done,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'created_at' => $this->created_at->format('Y/m/d H:i'),
+            'updated_at' => $this->updated_at->format('Y/m/d H:i')
         ];
     }
 }

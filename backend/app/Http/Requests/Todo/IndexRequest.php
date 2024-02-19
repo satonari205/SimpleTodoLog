@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests\Todo;
 
-use App\Models\Todo;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class UpdateRequest extends FormRequest
+class IndexRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +21,16 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd($this);
         return [
-            'done' => 'required',
+            'done' => [ 'required', 'boolean']
         ];
     }
 
-    // public function editTodo(): Todo
-    // {
-    //     $validated = $this->validated();
-    //     $data = [
-    //         'done' => $validated['done'],
-    //     ];
-    //     return new Todo($data);
-    // }
+    public function prepareForValidation()
+    {
+        $done = $this->query('done');
+        $done = filter_var($done, FILTER_VALIDATE_BOOLEAN);
+        $this->merge(compact('done'));
+    }
 }

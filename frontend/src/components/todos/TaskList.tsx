@@ -10,7 +10,7 @@ const TaskList: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await getTodos();
+      await getTodos('false');
       setIsLoading(false);
     }
     fetchData();

@@ -2,26 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Todo\IndexRequest;
 use App\Http\Requests\Todo\StoreRequest;
 use App\Http\Resources\TodoResource;
 use App\Models\Todo;
+use App\UseCases\Todo\IndexAction;
 use App\UseCases\Todo\StoreAction;
 use App\UseCases\Todo\UpdateAction;
 use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
-    public function index ()
+    public function index (IndexRequest $request, IndexAction $action)
     {
-        return TodoResource::collection(
-            Todo::where('user_id', Auth::id())->where('done', false)->get()
-        );
+        return TodoResource::collection($action($request->done));
     }
 
-    public function store (StoreRequest $request, Todo $todo, StoreAction $action): TodoResource
+    public function store (StoreRequest $request, StoreAction $action): TodoResource
     {
         $todo = $request->makeTodo();
-        $this->authorize('create', $todo);
         return new TodoResource($action($todo));
     }
 

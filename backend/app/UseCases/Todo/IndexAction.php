@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class IndexAction
 {
-  public function __invoke()
+  public function __invoke(Bool $done)
   {
-    //
+    return Todo::where('user_id', Auth::id())->where('done', $done)->get();
   }
 }
