@@ -40,6 +40,7 @@ const AuthForm: FC = () => {
           },
         })}
         placeholder="email"
+        // autocomplete="email"
         className="input input-bordered w-full max-w-lg h-10"
       />
       <p className="text-rose-500 text-sm mb-3">{errors.email?.message}</p>

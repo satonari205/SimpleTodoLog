@@ -1,15 +1,16 @@
 import { FC, useState } from "react";
-import { storeTask } from "../../Hooks/todo";
 import { TailSpin } from "react-loader-spinner";
+import useTodoState from "../../Hooks/useTodoState";
 
 const InputTask: FC = () => {
   const [todoTitle, setTodoTitle] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { storeTodo } = useTodoState();
 
   const addTask = async () => {
     setIsLoading(true);
     setTodoTitle('');
-    await storeTask(todoTitle);
+    await storeTodo(todoTitle);
     setIsLoading(false);
   };
 

@@ -1,19 +1,16 @@
 import { FC, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
 import { Oval } from "react-loader-spinner";
-import { todoState } from "../../Hooks/todoState";
-import { getTasks } from "../../Hooks/todo";
 import Task from "./Task";
 import { Todo } from "../../types/ITodo";
+import useTodoState from "../../Hooks/useTodoState";
 
 const TaskList: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [todos, setTodos] = useRecoilState(todoState);
+  const { todos, isError, getTodos } = useTodoState();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getTasks();
-      setTodos(data);
+      await getTodos();
       setIsLoading(false);
     }
     fetchData();
@@ -26,6 +23,8 @@ const TaskList: FC = () => {
       </div>
     );
   }
+
+  if (isError !== '') return <h1>{isError}</h1>
 
   return (
     <table className="table">

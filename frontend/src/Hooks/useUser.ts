@@ -1,18 +1,16 @@
 import api from "./api";
-import { User } from "../types/IUser";
 import useSWR from "swr";
 
 const useUser = () => {
-  const getUser = async ():Promise<User|undefined> => {
-    try {
-      const res = await api.get('/api/me');
-      return res.data.data;
-    } catch (e) {
-      console.log(e);
-    }
+  const getUser = async () => {
+    const res = await api.get('/api/me');
+    return res.data.data;
   }
 
-  const { data, error, isLoading} = useSWR('/api/me', getUser);
+  const { data, error, isLoading} = useSWR('/api/me', getUser, {
+    onErrorRetry: (error) => {
+      if (error.status === 404) return;
+  }});
 
   return {
     user: data,

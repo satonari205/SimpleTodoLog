@@ -9,15 +9,11 @@ export const Profile: FC = () => {
 
   if (isLoading) return (
     <div className="mx-auto w-8 h-8">
-        <Oval visible={true} height="32" width="32" color="#411DD8" ariaLabel="oval-loading" />
-      </div>
+      <Oval visible={true} height="32" width="32" color="#411DD8" ariaLabel="oval-loading" />
+    </div>
   );
 
-  if (isError) return <p>Error</p>;
+  if (isError) return <AuthForm />;
 
-  return (
-    <>
-      { (user) ? <UserInfo user={user} /> : <AuthForm />}
-    </>
-  );
+  return <UserInfo user={user}/>;
 }
