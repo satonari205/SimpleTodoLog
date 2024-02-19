@@ -12,4 +12,5 @@ export const login = async (data:FormState): Promise<void> => {
 
 export const logout = (): void => {
   api.post('/api/logout');
+  window.location.reload();
 }

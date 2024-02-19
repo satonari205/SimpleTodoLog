@@ -7,11 +7,6 @@ interface Props {
 }
 
 const UserInfo: FC<Props> = ({ user }) => {
-  const onClick = ():void => {
-    logout();
-    window.location.reload();
-  }
-
   return (
     <>
       <div>
@@ -28,7 +23,7 @@ const UserInfo: FC<Props> = ({ user }) => {
             {user && user.created_at}
           </span>
         </p>
-        <button onClick={onClick} className="btn btn-sm btn-secondary mt-2">Logout</button>
+        <button onClick={logout} className="btn btn-sm btn-secondary mt-2">Logout</button>
       </div>
     </>
   )

@@ -2,19 +2,30 @@ import { FC, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { FormState } from "../../types/IUser";
 import { login, signup } from "../../Hooks/auth";
+import { Oval } from "react-loader-spinner";
 
 const AuthForm: FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSignedUp, setIsSignedUp] = useState<boolean>(true);
   const currentForm = (isSignedUp) ? "Login" : "Singup";
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormState>();
+
   const onSubmit = (data: FormState) => {
+    setIsLoading(true);
     if (data.name) {
       signup(data);
-      setIsSignedUp(true);
+      setIsLoading(false);
       return;
     }
     login(data);
+    setIsLoading(false);
+  }
+
+  if(isLoading){
+    return (
+      <Oval visible={true} height="32" width="32" color="#411DD8" ariaLabel="oval-loading" />
+    );
   }
 
   return (
@@ -40,7 +51,6 @@ const AuthForm: FC = () => {
           },
         })}
         placeholder="email"
-        // autocomplete="email"
         className="input input-bordered w-full max-w-lg h-10"
       />
       <p className="text-rose-500 text-sm mb-3">{errors.email?.message}</p>
