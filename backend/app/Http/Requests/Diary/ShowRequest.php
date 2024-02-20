@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Todo;
+namespace App\Http\Requests\Diary;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexRequest extends FormRequest
+class ShowRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
@@ -22,16 +19,14 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'done' => [ 'required', 'boolean'],
-            'date' => [ 'required', 'string', 'date_format:Y-m-d'],
+            'log' => [ 'required', 'string'],
+            'date' => [ 'string', 'date_format:Y-m-d'],
         ];
     }
 
     public function prepareForValidation()
     {
-        $done = $this->query('done');
         $date = $this->query('date');
-        $done = filter_var($done, FILTER_VALIDATE_BOOLEAN);
-        $this->merge(compact('done', 'date'));
+        $this->merge(compact('date'));
     }
 }

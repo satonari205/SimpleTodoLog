@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import api from "../Hooks/api";
 import { Todo } from "../types/ITodo";
-import Done from "../components/diary/done";
+import Done from "../components/diary/Done";
 
 export const Diary: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -9,6 +9,7 @@ export const Diary: FC = () => {
 
   const update = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = e.target.value;
+    console.log(time);
   }
 
   useEffect(() => {
@@ -20,7 +21,11 @@ export const Diary: FC = () => {
     fetchDones();
   }, []);
 
-  if (isLoading) return <span className="loading loading-spinner text-primary mx-auto"></span>;
+  if (isLoading) return (
+    <div className="w-10 mx-auto mt-10">
+      <span className="loading loading-spinner text-primary"></span>
+    </div>
+  )
 
   return (
     <>
@@ -35,7 +40,7 @@ export const Diary: FC = () => {
         {
           todos
             ? todos.map(todo => <Done key={todo.id} todo={todo} />)
-            : <li>null</li>
+            : <li className="text-center">何かを成しましょう</li>
         }
       </ul>
       <textarea className="textarea textarea-bordered w-full h-3/6" />

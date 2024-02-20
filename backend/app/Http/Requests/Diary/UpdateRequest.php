@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Todo;
+namespace App\Http\Requests\Diary;
 
+use App\Models\Diary;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class IndexRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +24,17 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'done' => [ 'required', 'boolean'],
-            'date' => [ 'required', 'string', 'date_format:Y-m-d'],
+            'log' => [ 'required' ],
         ];
     }
 
-    public function prepareForValidation()
+    public function updateDiary(): Diary
     {
-        $done = $this->query('done');
-        $date = $this->query('date');
-        $done = filter_var($done, FILTER_VALIDATE_BOOLEAN);
-        $this->merge(compact('done', 'date'));
+        $validated = $this->validated();
+        $data = [
+            'user_id' => Auth::id(),
+            'log' => $validated['log'],
+        ];
+        return new Diary($data);
     }
 }
