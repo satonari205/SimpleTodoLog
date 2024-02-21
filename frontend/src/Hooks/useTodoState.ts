@@ -10,13 +10,14 @@ const useTodoState = () => {
     key: 'todoState',
     default: []
   });
-
   const [todos, setTodos] = useRecoilState(todoState);
-
   const [isError, setIsError] = useState<string>('');
 
-  const getTodos = async (done: string) => {
-    await api.get(`/api/todos?done=${done}`)
+  const getTodos = async (done: string, date: any = null) => {
+    const URL = (date === null)
+    ? `/api/todos?done=${done}`
+    : `/api/todos?done=${done}&date=${date}`;
+    await api.get(URL)
       .then(res => setTodos(res.data.data))
       .catch((e) => setIsError(e.response.data.message));
   }

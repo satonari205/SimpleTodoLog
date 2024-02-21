@@ -6,14 +6,15 @@ use App\Http\Requests\Diary\ShowRequest;
 use App\Http\Requests\Diary\StoreRequest;
 use App\Http\Requests\Diary\UpdateRequest;
 use App\Http\Resources\DiaryResource;
+use App\UseCases\Diary\ShowAction;
 use App\UseCases\Diary\StoreAction;
-use App\UseCases\Todo\UpdateAction;
+use App\UseCases\Diary\UpdateAction;
 
 class DiaryController extends Controller
 {
-    public function show (ShowRequest $request)
+    public function show (ShowRequest $request, ShowAction $action)
     {
-        //
+        return new DiaryResource($action($request->validated()));
     }
 
     public function store (StoreRequest $request, StoreAction $action)
@@ -24,7 +25,6 @@ class DiaryController extends Controller
 
     public function update (UpdateRequest $request, UpdateAction $action)
     {
-        $diary = $request->updateDiary();
-        return new DiaryResource($action($diary));
+        return new DiaryResource($action($request->validated()));
     }
 }

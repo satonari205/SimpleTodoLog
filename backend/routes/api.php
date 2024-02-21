@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Diaries
     Route::get('diaries', [DiaryController::class, 'show']);
-    Route::post('diaries', [DiaryController::class, 'show']);
-    Route::put('diaries/{id}', [DiaryController::class, 'show']);
+    Route::post('diaries', [DiaryController::class, 'store']);
+    Route::patch('diaries', [DiaryController::class, 'update']);
 });

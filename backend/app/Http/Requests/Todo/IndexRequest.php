@@ -23,14 +23,14 @@ class IndexRequest extends FormRequest
     {
         return [
             'done' => [ 'required', 'boolean'],
-            'date' => [ 'required', 'string', 'date_format:Y-m-d'],
+            'date' => [ 'nullable', 'string', 'date_format:Y-m-d'],
         ];
     }
 
     public function prepareForValidation()
     {
         $done = $this->query('done');
-        $date = $this->query('date');
+        $date = $this->query('date') ? $this->query('date') : null;
         $done = filter_var($done, FILTER_VALIDATE_BOOLEAN);
         $this->merge(compact('done', 'date'));
     }

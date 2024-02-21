@@ -3,8 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
-
+use App\Exceptions\DuplicatedDiaryException;
 class Handler extends ExceptionHandler
 {
     /**
@@ -23,8 +22,12 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (DuplicatedDiaryException $e) {
+            return response()->json(['message' => "Diary already exists in this day."], 422);
+        });
+
+        $this->renderable(function (DontExistsDiaryException $e) {
+            return response()->json(['message' => "Today's Diary doesn't exist."], 422);
         });
     }
 }

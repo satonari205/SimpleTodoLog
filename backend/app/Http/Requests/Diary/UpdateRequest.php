@@ -27,14 +27,4 @@ class UpdateRequest extends FormRequest
             'log' => [ 'required' ],
         ];
     }
-
-    public function updateDiary(): Diary
-    {
-        $validated = $this->validated();
-        $data = [
-            'user_id' => Auth::id(),
-            'log' => $validated['log'],
-        ];
-        return new Diary($data);
-    }
 }

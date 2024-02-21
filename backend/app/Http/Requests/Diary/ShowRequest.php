@@ -19,8 +19,7 @@ class ShowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'log' => [ 'required', 'string'],
-            'date' => [ 'string', 'date_format:Y-m-d'],
+            'date' => [ 'required', 'string', 'date_format:Y-m-d'],
         ];
     }
 

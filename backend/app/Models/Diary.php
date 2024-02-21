@@ -20,7 +20,7 @@ class Diary extends Model
     ];
 
     protected $dispatchesEvents = [
-        'creating' => DiaryCreate::class,
+        'created' => DiaryCreate::class,
     ];
 
     public function user()
