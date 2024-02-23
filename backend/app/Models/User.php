@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Todo::class);
     }
+
+    public function diaries(): HasMany
+    {
+        return $this->hasMany(Diary::class);
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
 }

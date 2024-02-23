@@ -9,7 +9,6 @@ class ShowAction
 {
   public function __invoke($validated)
   {
-    $date = $validated['date'];
-    return Diary::where('user_id', Auth::id())->whereDate('created_at', $date)->get();
+    return Diary::where('user_id', Auth::id())->whereDate('created_at', $validated['date'])->get();
   }
 }

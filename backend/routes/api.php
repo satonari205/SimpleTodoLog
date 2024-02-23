@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiaryController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UserController;
 
@@ -22,4 +23,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('diaries', [DiaryController::class, 'show']);
     Route::post('diaries', [DiaryController::class, 'store']);
     Route::patch('diaries', [DiaryController::class, 'update']);
+    Route::delete('diaries', [DiaryController::class, 'delete']);
+
+    //Logs
+    Route::get('logs', [LogController::class, 'index']);
+    Route::get('logs', [LogController::class, 'show']);
+    Route::post('logs', [LogController::class, 'store']);
+    Route::put('logs', [LogController::class, 'update']);
+    Route::delete('logs', [LogController::class, 'delete']);
 });

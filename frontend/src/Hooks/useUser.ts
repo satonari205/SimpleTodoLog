@@ -4,7 +4,7 @@ import useSWR from "swr";
 const useUser = () => {
   const me = async () => {
     const res = await api.get('/api/me');
-    return res.data.data;
+    return res.data;
   }
 
   const { data, error, isLoading} = useSWR('/api/me', me, {

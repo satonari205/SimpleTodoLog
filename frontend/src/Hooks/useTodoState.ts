@@ -18,13 +18,13 @@ const useTodoState = () => {
     ? `/api/todos?done=${done}`
     : `/api/todos?done=${done}&date=${date}`;
     await api.get(URL)
-      .then(res => setTodos(res.data.data))
+      .then(res => setTodos(res.data))
       .catch((e) => setIsError(e.response.data.message));
   }
 
   const storeTodo = async (todoTitle: string) => {
     const res = await api.post('/api/todos', { "title" : todoTitle, "done" : false });
-    const newTodo = res.data.data;
+    const newTodo = res.data;
     setTodos([...todos, newTodo]);
     return newTodo;
   }

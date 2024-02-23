@@ -7,7 +7,26 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function me ()
+    /**
+     * @OA\Get(
+     *     path="/api/me",
+     *     operationId="user",
+     *     tags={"user"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="成功",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="user",
+     *                 type="string",
+     *                 example="user"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function me()
     {
         $user = Auth::user();
         return new JsonResource([

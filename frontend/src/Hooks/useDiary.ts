@@ -8,7 +8,7 @@ const useDiary = () => {
   const getLog = async () => {
     await api.get(`/api/diaries?date=${date}`)
       .then(res => {
-        setLog(res.data.data.log);
+        setLog(res.data.log);
       })
       .catch(e => console.log(e));
   }
