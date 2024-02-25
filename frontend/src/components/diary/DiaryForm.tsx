@@ -1,13 +1,19 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import useDiary from "../../Hooks/useDiary";
 
 const DiaryForm: FC = () => {
-  const { setLog, share, update } = useDiary();
+  const { log, error, getLog, setLog, share, update } = useDiary();
+
+  useEffect(() => {
+    getLog();
+  }, [])
 
   return (
     <>
+      <p className="text-red-500 text-center">{error}</p>
       <textarea
         className="textarea textarea-bordered w-full h-3/6"
+        value={log}
         onChange={(e) => setLog(e.target.value)}
       />
       <div className="flex justify-between py-2">

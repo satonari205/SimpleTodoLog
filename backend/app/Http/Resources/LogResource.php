@@ -16,11 +16,10 @@ class LogResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        dd($this);
         return [
-            'user' => UserResource::collenction($this->user),
+            'user' => new UserResource($this->user),
             // 'todos' => TodoResource::collection($this->todos),
-            'diary' => DiaryResource::collection($this->diary),
+            'diary' => new DiaryResource($this->diary),
         ];
     }
 }

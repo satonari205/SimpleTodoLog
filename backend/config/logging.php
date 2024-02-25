@@ -27,6 +27,12 @@ return [
             'level' => 'info',
         ],
 
+        'log' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/log.log'),
+            'level' => 'info',
+        ],
+
         'sql' => [
             'driver' => 'daily',
             'path' => storage_path('logs/sql.log'),
