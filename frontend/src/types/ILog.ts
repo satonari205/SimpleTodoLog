@@ -1,7 +1,7 @@
 import { Diary } from "./IDiary"
 import { User } from "./IUser"
 
-export type Log = {
+export interface ILog {
   id: number,
   caption: string,
   user: User,

@@ -17,7 +17,7 @@ class IndexAction
 
     if ($done === true) {
       $ymd = new DateTime($date);
-      $todos->whereDate('created_at', $ymd);
+      $todos->whereDate('updated_at', $ymd);
     }
 
     return $todos->get();

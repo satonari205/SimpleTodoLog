@@ -9,6 +9,10 @@ const useDiary = () => {
   const getLog = async () => {
     await api.get(`/api/diaries?date=${date}`)
       .then(res => {
+        if(res.data.length === 0){
+          setLog('');
+          return;
+        }
         setLog(res.data[0].log);
       })
       .catch(e => setError(e.message));
@@ -27,15 +31,8 @@ const useDiary = () => {
         setError(e.message);
       });
   }
-  
-  const share = async () => {
-    await api.post('/api/logs', { "date" : date })
-      .then(res => console.log(res))
-      .catch(e => console.log(e));
-  }
 
-
-  return { date, log, error, setDate, getLog, setLog, update, share }
+  return { date, log, error, setDate, getLog, setLog, update }
 }
 
 const getToday = (): string => {

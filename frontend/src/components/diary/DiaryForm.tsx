@@ -1,8 +1,9 @@
 import { FC, useEffect } from "react";
 import useDiary from "../../Hooks/useDiary";
+import ShareButton from "../logs/ShareButton";
 
 const DiaryForm: FC = () => {
-  const { log, error, getLog, setLog, share, update } = useDiary();
+  const { log, error, getLog, setLog, update } = useDiary();
 
   useEffect(() => {
     getLog();
@@ -17,7 +18,7 @@ const DiaryForm: FC = () => {
         onChange={(e) => setLog(e.target.value)}
       />
       <div className="flex justify-between py-2">
-        <button className="btn btn-sm btn-accent" onClick={share}>share</button>
+        <ShareButton />
         <button className="btn btn-sm btn-primary" onClick={update}>submit</button>
       </div>
     </>

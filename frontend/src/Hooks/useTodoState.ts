@@ -13,7 +13,7 @@ const useTodoState = () => {
   const [todos, setTodos] = useRecoilState(todoState);
   const [isError, setIsError] = useState<string>('');
 
-  const getTodos = async (done: string, date: any = null) => {
+  const getTodos = async (done: string, date: string|null = null) => {
     const URL = (date === null)
     ? `/api/todos?done=${done}`
     : `/api/todos?done=${done}&date=${date}`;

@@ -6,7 +6,7 @@ const Nav: FC = () => {
     <div role="tablist" className="tabs tabs-lifted">
       <Tab tabName="todos" path="todos"/>
       <Tab tabName="diary" path="diary"/>
-      <Tab tabName="bbs" path="bbs"/>
+      <Tab tabName="logs" path="logs"/>
       <Tab tabName="profile" path=""/>
     </div>
   );
