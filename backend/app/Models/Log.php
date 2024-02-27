@@ -9,11 +9,11 @@ class Log extends Model
 {
     use HasFactory;
 
-    protected $primary_key = [ 'user_id', 'diary_id' ];
+    protected $primary_key = 'id';
 
     public $increment = false;
-
-    protected $fillable = [ 'user_id', 'diary_id' ];
+    
+    protected $fillable = [ 'user_id', 'diary_id', 'caption' ];
 
     public function user ()
     {

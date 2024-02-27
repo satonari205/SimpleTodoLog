@@ -5,6 +5,7 @@ namespace App\UseCases\Diary;
 use App\Exceptions\DuplicatedDiaryException;
 use App\Models\Diary;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class StoreAction
 {

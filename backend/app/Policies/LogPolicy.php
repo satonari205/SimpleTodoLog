@@ -2,14 +2,24 @@
 
 namespace App\Policies;
 
-use App\Models\Diary;
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LogPolicy
 {
-    public function create (User $user, Diary $diary)
+    public function create (User $user)
     {
-        return Auth::id() === $diary->user_id;
+        return $user->id === Auth::id();
+    }
+
+    public function update (User $user, Log $log)
+    {
+        return $log->user_id === Auth::id();
+    }
+
+    public function delete (User $user, Log $log)
+    {
+        return $log->user_id === Auth::id();
     }
 }

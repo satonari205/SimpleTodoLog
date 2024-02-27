@@ -33,7 +33,6 @@ class DiaryController extends Controller
 
     public function delete(DeleteRequest $request)
     {
-        dd($request);
         $diary = Diary::where('user_id', Auth::id())
             ->whereDate('created_at', $request->date)
             ->get();
