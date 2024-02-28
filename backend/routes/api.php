@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Logs
     Route::get('logs', [LogController::class, 'index']);
+    // Route::get('logs/{log}', [LogController::class, 'show']);
     Route::get('logs/{log}/todos', [LogController::class, 'show']);
     Route::post('logs', [LogController::class, 'store']);
     Route::patch('logs/{log}', [LogController::class, 'update']);

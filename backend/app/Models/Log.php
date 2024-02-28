@@ -12,7 +12,7 @@ class Log extends Model
     protected $primary_key = 'id';
 
     public $increment = false;
-    
+
     protected $fillable = [ 'user_id', 'diary_id', 'caption' ];
 
     public function user ()

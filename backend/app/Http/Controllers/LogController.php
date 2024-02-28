@@ -22,15 +22,13 @@ class LogController extends Controller
 
     public function show(Log $log)
     {
-        // Logが作成された日付を取得します
-        $logDate = $log->created_at->toDateString();
-
-        // Logが作成された日付と同じupdated_atカラムを持つTodosを取得します
-        $todos = Todo::whereDate('updated_at', $logDate)->get();
-        dd($todos);
-
-        // Logとその関連するtodosをリソースクラスを使用して整形します
-        return new LogTodosResource($log, $todos);
+        $todos = Todo::where('user_id', $log->user_id)
+            // ->whereDate('updated_at', $log->updated_at->format('Y-m-d'))
+            ->whereDate('updated_at', "2024-02-28")
+            ->where('done', true)
+            ->get();
+        // dd($todos);
+        return LogTodosResource::collection($log, $todos);
     }
 
     public function store(StoreRequest $request, StoreAction $action)
